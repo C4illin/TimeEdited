@@ -7,7 +7,7 @@ const port = 3000
 
 const url = 'https://cloud.timeedit.net/chalmers/web/public/ri6Y036mZ55Z6hQ1W55865615Q40y4Q6Zt680ZZZX46Q627695y0nZ65QZA1D6C7tZCD595CQ4A122t17E7Q5DFB18367dF20538338.ics';
 
-const removeCourses = ['EDA452', 'RRY125', 'EEM021', 'FUF045', 'MVE550', 'TME055', 'TMA690', 'FTF131'];
+const removeCourses = ['EDA452', 'RRY125', 'EEM021', 'FUF045', 'MVE550', 'TME055', 'TMA690', 'FTF131', "MVE370"];
 
 app.get('/', (req, res) => {
   res.send('hello world')
@@ -40,7 +40,7 @@ const filterEvents = (events) => {
   let filteredEvents = JSON.parse(plaintext);
 
   // JSON Filtering
-  filteredEvents = filteredEvents.filter((event) => !event.DESCRIPTION.startsWith('Tentamen'));
+  filteredEvents = filteredEvents.filter((event) => !event.DESCRIPTION.startsWith('Tentamen') && !event.DESCRIPTION.startsWith('Självstudier') && !event.DESCRIPTION.includes('Holiday') && !event.DESCRIPTION.includes('Omtentamen'));
   
   for (let i = 0, l = removeCourses.length; i < l; i++){
     filteredEvents = filteredEvents.filter((event) => !event.SUMMARY.includes(removeCourses[i]));
@@ -63,12 +63,14 @@ const filterEvents = (events) => {
 
 // Fetch and filter and to serve it back to the client
 const fetchyFilter = async (url) => {
-  // uses https instaed of fetch to bring down the amount of dependencies
   try {let response = await got(url);
     if (response.statusCode != 200) {
       console.error('Failed to fetch calendar');
+      return('Failed to fetch calendar');
     }
     const output = await ical2json.convert(response.body);
+    output.VCALENDAR[0].PRDOID = "-//TimeEditEd\\\\\\, //TimeEditEd//EN";
+    output.VCALENDAR[0]["X-WR-CALNAME"] = output.VCALENDAR[0]["X-WR-CALNAME"].replace('TimeEdit-', '');
     const events = output.VCALENDAR[0].VEVENT;
     const filteredEvents = await filterEvents(events);
     output.VCALENDAR[0].VEVENT = filteredEvents;
@@ -78,9 +80,8 @@ const fetchyFilter = async (url) => {
     return result
   } catch (error) {
     console.error(error);
+    return('Failed to fetch calendar');
   }
-  
-  // fs.writeFileSync('filtered.ics', result);
 };
 
-// console.log(fetchyFilter(url))
+// fetchyFilter(url)
