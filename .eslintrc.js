@@ -8,6 +8,7 @@ module.exports = {
     "overrides": [
     ],
     "parserOptions": {
+        "sourceType": "module",
         "ecmaVersion": "latest"
     },
     "rules": {

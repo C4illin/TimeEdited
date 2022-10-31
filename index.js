@@ -1,6 +1,5 @@
-import { get } from 'https';
 import ical2json from 'ical2json';
-import fs from 'fs';
+// import fs from 'fs';
 import got from 'got';
 import express from 'express';
 const app = express()
