@@ -12,7 +12,7 @@ Add https://github.com/EdvinNilsson/chalmersCalendar as a separate calendar
 
 services:
   TimeEdited:
-    image: ghcr.io/c4illin/TimeEdited:main
+    image: ghcr.io/c4illin/timeedited:main
     container_name: TimeEdited
     restart: unless-stopped
     ports:
