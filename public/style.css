@@ -1,0 +1,69 @@
+body {
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: #f5f5f5;
+}
+
+h1{
+  padding-top:0;
+  /* text-indent: 0.1em;
+  letter-spacing: 0.1em; */
+}
+
+input[type="text"], input[type="submit"] {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+input[type="checkbox"] {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background-color: #fff;
+  /* padding: 0 10px;
+  margin-bottom: 10px; */
+  font-size: 16px;
+}
+
+#toCopy {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 12px 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #111;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #757575;
+}
+
+footer a { color: #757575; }
+
+.flexFix {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
