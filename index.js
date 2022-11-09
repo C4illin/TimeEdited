@@ -11,7 +11,9 @@ const port = 3000
 const uid = new ShortUniqueId({ length: 8 });
 
 app.use(express.static('public'))
-app.use(express.urlencoded())
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(compression())
 app.use(helmet())
 app.set("view engine", "ejs")
@@ -40,7 +42,19 @@ app.get("/register",(req, res) => {
 app.post("/config/:user/save", (req, res) => {
   let user = req.params["user"]
   console.log(req.body)
+
+  if (req.body["option1"] && req.body["option1"] == "option1") {
+    config[user]["option1"] = true
+  } else {
+    config[user]["option1"] = false
+  }
+
+  if (req.body["removeCourses"] && typeof req.body["removeCourses"] === "string") {
+    config[user]["removeCourses"] = req.body["removeCourses"].split(",")
+  }
+
   res.redirect("/config/" + user)
+  fs.writeFileSync('./config/config.json', JSON.stringify(config, null, 2));
 })
 
 app.get("/config/:user", (req, res) => {
@@ -84,9 +98,9 @@ const filterEvents = (events, user) => {
   // Plaintext Replacement
   let plaintext = JSON.stringify(events);
 
-  plaintext = plaintext.replaceAll('Kurskod\\\\, Kursnamn: ', '');
-  plaintext = plaintext.replaceAll('Rum\\\\, Hus: ', '');
-  plaintext = plaintext.replaceAll('\\\\, Tentamen', '');
+  // plaintext = plaintext.replaceAll('Kurskod\\\\, Kursnamn: ', '');
+  // plaintext = plaintext.replaceAll('Rum\\\\, Hus: ', '');
+  // plaintext = plaintext.replaceAll('\\\\, Tentamen', '');
 
   let filteredEvents = JSON.parse(plaintext);
 
