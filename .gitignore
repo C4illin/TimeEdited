@@ -2,3 +2,4 @@
 events.json
 eventsfilter.json
 *.ics
+/config/config.json

@@ -15,6 +15,8 @@ services:
     image: ghcr.io/c4illin/timeedited:main
     container_name: TimeEdited
     restart: unless-stopped
+    volumes:
+      - /docker/config/TimeEdited:/usr/src/app/config
     ports:
       - 3000:3000
 ```

@@ -13,13 +13,14 @@
   <h1>Config <%-user%>
   </h1>
   <!-- <p><%-url %></p> -->
-  <form action="" class="flexFix">
+  <form method="post" action="/config/<%-user%>/save" class="flexFix">
+    <p>Filter (ex: "TME055, MVE550"):</p>
+    <textarea name="removeCourses" placeholder="TME055, MVE550 etc."><%-removeCourses-%></textarea>
     <div>
-      <input type="checkbox" id="option1" name="option1" value="option1" checked>
+      <input type="checkbox" id="option1" name="option1" value="option1" checked=<%-option1-%>>
       <label for="option1">Ta bort tentamen, självstudier och liknande</label><br>
-
-      <input type="checkbox" id="option2" name="option2" value="option2" checked>
-      <label for="option2">Ta bort "Kurskod, Kursnamn" & "Rum, Hus" & ", Tentamen"</label><br>
+      <!-- <input type="checkbox" id="option2" name="option2" value="option2" checked>
+      <label for="option2">Ta bort "Kurskod, Kursnamn" & "Rum, Hus" & ", Tentamen"</label><br> -->
     </div>
     <!-- <input type="checkbox" id="option3" name="option3" value="option3">
     <label for="option3"> I have a boat</label><br><br> -->
@@ -27,6 +28,13 @@
   </form>
   <p>Kopiera till ditt kalender program:</p>
   <a id="toCopy" href="https://timeedited.emrik.org/cal/<%-user%>.ics">https://timeedited.emrik.org/cal/<%-user%>.ics</a>
+  <iframe id="open-web-calendar" 
+    style="background:url('https://raw.githubusercontent.com/niccokunzmann/open-web-calendar/master/static/img/loaders/circular-loader.gif') center center no-repeat;"
+    src="https://timeedited.emrik.org/cal/<%-user%>.ics"
+    sandbox="allow-scripts allow-same-origin allow-top-navigation"
+    allowTransparency="true" scrolling="no" 
+    frameborder="0" height="600px" width="100%">
+  </iframe>
 </body>
 
 </html>

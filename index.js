@@ -5,12 +5,13 @@ import express from 'express';
 import compression from "compression"
 import helmet from "helmet"
 import ShortUniqueId from 'short-unique-id';
-import config from './config.json' assert { type: "json" };
+import config from './config/config.json' assert { type: "json" };
 const app = express()
 const port = 3000
 const uid = new ShortUniqueId({ length: 8 });
 
 app.use(express.static('public'))
+app.use(express.urlencoded())
 app.use(compression())
 app.use(helmet())
 app.set("view engine", "ejs")
@@ -30,16 +31,36 @@ app.get("/register",(req, res) => {
     res.redirect("/config/" + userid)
     config[userid] = {}
     config[userid]["url"] = url
-    fs.writeFileSync('config.json', JSON.stringify(config, null, 2));
+    fs.writeFileSync('./config/config.json', JSON.stringify(config, null, 2));
   } else {
     res.send("Invalid URL")
   }
 })
 
+app.post("/config/:user/save", (req, res) => {
+  let user = req.params["user"]
+  console.log(req.body)
+  res.redirect("/config/" + user)
+})
+
 app.get("/config/:user", (req, res) => {
   let user = req.params["user"]
-  let url = config[user]["url"]
-  res.render("config", {url: url, user: user})
+  let url = "error"
+  if (config[user]["url"]) {
+    url = config[user]["url"]
+  }
+
+  let removeCourses = ""
+  if (config[user]["removeCourses"]) {
+    removeCourses = config[user]["removeCourses"].join(", ")
+  }
+
+  let option1 = true
+  if (config[user]["option1"]) {
+    option1 = config[user]["option1"]
+  }
+  
+  res.render("config", {url: url, user: user, removeCourses: removeCourses, option1: option1})
 });
 
 app.get("/cal/:user.ics", async (req, res) => {
