@@ -11,12 +11,12 @@ Add https://github.com/EdvinNilsson/chalmersCalendar as a separate calendar
 #docker-compose.yml
 
 services:
-  TimeEdited:
+  timeedited:
     image: ghcr.io/c4illin/timeedited:main
-    container_name: TimeEdited
+    container_name: timeedited
     restart: unless-stopped
     volumes:
-      - /docker/appdata/TimeEdited:/usr/src/app/config
+      - ./config:/usr/src/app/config
     ports:
       - 3000:3000
 ```

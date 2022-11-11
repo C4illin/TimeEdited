@@ -1,0 +1,10 @@
+version: "3"
+services:
+  timeedited:
+    build: .
+    ports:
+      - 3000:3000
+    container_name: TimeEdited
+    restart: unless-stopped
+    volumes:
+      - ./config:/usr/src/app/config

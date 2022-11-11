@@ -80,8 +80,10 @@ app.get("/config/:user", (req, res) => {
 app.get("/cal/:user.ics", async (req, res) => {
   let user = req.params["user"]
   console.log(user)
-  if(config.user && config.user.url){
-    let toSend = await fetchyFilter(config.user)
+  console.log(config[user])
+  console.log(config[user]["url"])
+  if(config[user] && config[user]["url"]){
+    let toSend = await fetchyFilter(config[user])
     res.set({"Content-Disposition":"attachment; filename=" + user + ".ics",'Content-type': 'text/calendar'});
     res.send(toSend);
   } else {
