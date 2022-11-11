@@ -16,7 +16,7 @@ services:
     container_name: TimeEdited
     restart: unless-stopped
     volumes:
-      - /docker/config/TimeEdited:/usr/src/app/config
+      - /docker/appdata/TimeEdited:/usr/src/app/config
     ports:
       - 3000:3000
 ```
