@@ -50,7 +50,7 @@ app.post("/config/:user/save", (req, res) => {
   }
 
   if (req.body["removeCourses"] && typeof req.body["removeCourses"] === "string") {
-    config[user]["removeCourses"] = req.body["removeCourses"].split(",")
+    config[user]["removeCourses"] = req.body["removeCourses"].replaceAll(" ","").split(",")
   }
 
   res.redirect("/config/" + user)

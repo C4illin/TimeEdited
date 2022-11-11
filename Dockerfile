@@ -17,7 +17,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-RUN touch ./config/config.json
+# RUN touch /usr/src/app/config/config.json
 
 EXPOSE 3000
 CMD [ "node", "index.js" ]
