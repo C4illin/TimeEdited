@@ -96,7 +96,7 @@ app.listen(port, () => {
 });
 
 const filterEvents = (events, user) => {
-  const removeCourses = user.removeCourses;
+  const removeCourses = config[user]["removeCourses"];
   // Plaintext Replacement
   let plaintext = JSON.stringify(events);
 
@@ -107,23 +107,25 @@ const filterEvents = (events, user) => {
   let filteredEvents = JSON.parse(plaintext);
 
   // JSON Filtering
-  filteredEvents = filteredEvents.filter((event) => !event.DESCRIPTION.startsWith('Tentamen') && !event.DESCRIPTION.startsWith('Självstudier') && !event.DESCRIPTION.includes('Holiday') && !event.DESCRIPTION.includes('Omtentamen'));
+  if (config[user]["option1"]) {
+    filteredEvents = filteredEvents.filter((event) => !event.DESCRIPTION.startsWith('Tentamen') && !event.DESCRIPTION.startsWith('Självstudier') && !event.DESCRIPTION.includes('Holiday') && !event.DESCRIPTION.includes('Omtentamen'));
+  }
   
   for (let i = 0, l = removeCourses.length; i < l; i++){
     filteredEvents = filteredEvents.filter((event) => !event.SUMMARY.includes(removeCourses[i]));
   }
 
-  filteredEvents = filteredEvents.map((event) => {
-    if (event.SUMMARY == 'Tentamen') {
-      if (event.DESCRIPTION.includes('Information inför val av kandidatarbete')) {
-        event.SUMMARY = 'Information inför val av kandidatarbete';
-      }
-      if (event.DESCRIPTION.includes('Halv dag/ Half day')) {
-        event.SUMMARY = 'Halv dag';
-      }
-    }
-    return event;
-  });
+  // filteredEvents = filteredEvents.map((event) => {
+  //   if (event.SUMMARY == 'Tentamen') {
+  //     if (event.DESCRIPTION.includes('Information inför val av kandidatarbete')) {
+  //       event.SUMMARY = 'Information inför val av kandidatarbete';
+  //     }
+  //     if (event.DESCRIPTION.includes('Halv dag/ Half day')) {
+  //       event.SUMMARY = 'Halv dag';
+  //     }
+  //   }
+  //   return event;
+  // });
 
   return filteredEvents;
 };
