@@ -96,7 +96,7 @@ app.listen(port, () => {
 });
 
 const filterEvents = (events, user) => {
-  const removeCourses = config[user]["removeCourses"];
+  const removeCourses = user?.removeCourses || [];
   // Plaintext Replacement
   let plaintext = JSON.stringify(events);
 
@@ -107,7 +107,7 @@ const filterEvents = (events, user) => {
   let filteredEvents = JSON.parse(plaintext);
 
   // JSON Filtering
-  if (config[user]["option1"]) {
+  if (user?.option1) {
     filteredEvents = filteredEvents.filter((event) => !event.DESCRIPTION.startsWith('Tentamen') && !event.DESCRIPTION.startsWith('Självstudier') && !event.DESCRIPTION.includes('Holiday') && !event.DESCRIPTION.includes('Omtentamen'));
   }
   
