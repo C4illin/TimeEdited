@@ -108,7 +108,7 @@ const filterEvents = (events, user) => {
 
   // JSON Filtering
   if (user?.option1) {
-    filteredEvents = filteredEvents.filter((event) => !event.DESCRIPTION.startsWith('Tentamen') && !event.DESCRIPTION.startsWith('Självstudier') && !event.DESCRIPTION.includes('Holiday') && !event.DESCRIPTION.includes('Omtentamen'));
+    filteredEvents = filteredEvents.filter((event) => !event.SUMMARY.startsWith('Tentamen') && !event.SUMMARY.startsWith('Självstudier') && !event.SUMMARY.includes('Holiday') && !event.SUMMARY.includes('Omtentamen'));
   }
   
   for (let i = 0, l = removeCourses.length; i < l; i++){
