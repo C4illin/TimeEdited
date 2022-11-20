@@ -2,13 +2,18 @@ import ical2json from 'ical2json';
 import fs from 'fs';
 import got from 'got';
 import express from 'express';
-import compression from "compression"
+import compression from "compression";
 import helmet from "helmet"
 import ShortUniqueId from 'short-unique-id';
 import config from './config/config.json' assert { type: "json" };
 const app = express()
 const port = 3000
 const uid = new ShortUniqueId({ length: 8 });
+
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(express.static('public'))
 app.use(express.urlencoded({
@@ -23,11 +28,11 @@ app.set("view engine", "ejs")
 //const removeCourses = ['EDA452', 'RRY125', 'EEM021', 'FUF045', 'MVE550', 'TME055', 'TMA690', 'FTF131', "MVE370"];
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(join(__dirname, '/public/index.html'));
 })
 
 app.get('/test', (req, res) => {
-  res.sendFile(path.join(__dirname, '/test.html'));
+  res.sendFile(join(__dirname, '/public/test.html'));
 })
 
 app.get('/test2', (req, res) => {
