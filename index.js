@@ -3,7 +3,7 @@ import fs from 'fs';
 import got from 'got';
 import express from 'express';
 import compression from "compression";
-import helmet from "helmet"
+// import helmet from "helmet"
 import ShortUniqueId from 'short-unique-id';
 import config from './config/config.json' assert { type: "json" };
 const app = express()
@@ -20,7 +20,6 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use(compression())
-app.use(helmet())
 app.set("view engine", "ejs")
 
 //const url = 'https://cloud.timeedit.net/chalmers/web/public/ri6Y036mZ55Z6hQ1W55865615Q40y4Q6Zt680ZZZX46Q627695y0nZ65QZA1D6C7tZCD595CQ4A122t17E7Q5DFB18367dF20538338.ics';
