@@ -40,10 +40,10 @@ app.get("/register",(req, res) => {
   let url = req.query.timeEditUrl
   if (url.startsWith("https://cloud.timeedit.net/") && url.endsWith(".ics")) {
     let userid = uid()
-    res.redirect("/config/" + userid)
     config[userid] = {}
     config[userid]["url"] = url
     fs.writeFileSync('./config/config.json', JSON.stringify(config, null, 2));
+    res.redirect("/config/" + userid)
   } else {
     res.send("Invalid URL")
   }
