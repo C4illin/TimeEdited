@@ -3,7 +3,6 @@ import fs from 'fs';
 import got from 'got';
 import express from 'express';
 import compression from "compression";
-// import helmet from "helmet"
 import ShortUniqueId from 'short-unique-id';
 import config from './config/config.json' assert { type: "json" };
 const app = express()
@@ -22,22 +21,8 @@ app.use(express.urlencoded({
 app.use(compression())
 app.set("view engine", "ejs")
 
-//const url = 'https://cloud.timeedit.net/chalmers/web/public/ri6Y036mZ55Z6hQ1W55865615Q40y4Q6Zt680ZZZX46Q627695y0nZ65QZA1D6C7tZCD595CQ4A122t17E7Q5DFB18367dF20538338.ics';
-
-//const removeCourses = ['EDA452', 'RRY125', 'EEM021', 'FUF045', 'MVE550', 'TME055', 'TMA690', 'FTF131', "MVE370"];
-
 app.get('/', (req, res) => {
   res.sendFile(join(__dirname, '/public/index.html'));
-})
-
-app.get('/test', (req, res) => {
-  res.sendFile(join(__dirname, '/public/test.html'));
-})
-
-app.get('/test2', (req, res) => {
-  let user = "dstrukt"
-  let url = config[user]["url"]
-  res.render("config", {url: url, user: user, removeCourses: [], option1: true})
 })
 
 app.get("/register",(req, res) => {
@@ -49,7 +34,7 @@ app.get("/register",(req, res) => {
     fs.writeFileSync('./config/config.json', JSON.stringify(config, null, 2));
     res.redirect("/config/" + userid)
   } else {
-    res.send("Invalid URL")
+    res.send("Invalid URL, make sure it is an .ics feed from TimeEdit")
   }
 })
 
@@ -158,8 +143,6 @@ const fetchyFilter = async (user) => {
     const events = output.VCALENDAR[0].VEVENT;
     const filteredEvents = await filterEvents(events, user);
     output.VCALENDAR[0].VEVENT = filteredEvents;
-    // fs.writeFileSync('events.json', JSON.stringify(events, null, 2));
-    // fs.writeFileSync('eventsfilter.json', JSON.stringify(filteredEvents, null, 2));
     const result = await ical2json.revert(output);
     return result
   } catch (error) {
