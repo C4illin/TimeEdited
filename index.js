@@ -30,9 +30,15 @@ app.get('/test', (req, res) => {
   res.sendFile(path.join(__dirname, '/test.html'));
 })
 
+app.get('/test2', (req, res) => {
+  let user = "dstrukt"
+  let url = config[user]["url"]
+  res.render("config", {url: url, user: user, removeCourses: [], option1: true})
+})
+
 app.get("/register",(req, res) => {
   let url = req.query.timeEditUrl
-  if (url.startsWith("https://cloud.timeedit.net/")) {
+  if (url.startsWith("https://cloud.timeedit.net/") && url.endsWith(".ics")) {
     let userid = uid()
     res.redirect("/config/" + userid)
     config[userid] = {}
