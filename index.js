@@ -107,7 +107,7 @@ const filterEvents = (events, user) => {
 
   // JSON Filtering
   if (user?.option1) {
-    filteredEvents = filteredEvents.filter((event) => !event.SUMMARY == "Personlig utveckling-Of course" && !event.SUMMARY == "CHARM" && !event.SUMMARY.startsWith('Tentaanmälan') && !event.SUMMARY.startsWith('Tentamen') && !event.SUMMARY.startsWith('Självstudier') && !event.SUMMARY.includes('Holiday') && !event.SUMMARY.includes('Omtentamen'));
+    filteredEvents = filteredEvents.filter((event) => !event.SUMMARY.startsWith("Personlig utveckling-Of course") && !event.SUMMARY.startsWith("CHARM") && !event.SUMMARY.startsWith('Tentaanmälan') && !event.SUMMARY.startsWith('Tentamen') && !event.SUMMARY.startsWith('Självstudier') && !event.SUMMARY.includes('Holiday') && !event.SUMMARY.includes('Omtentamen'));
   }
   
   for (let i = 0, l = removeCourses.length; i < l; i++){
