@@ -6,7 +6,7 @@ Add "&p=52" to the end of TimeEdit to get the 52 week view. (before exporting to
 
 Add https://github.com/EdvinNilsson/chalmersCalendar as a separate calendar
 
-## Installation
+## Self host
 ```yml
 #docker-compose.yml
 
