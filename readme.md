@@ -2,7 +2,7 @@
 https://timeedited.emrik.org/
 
 ## Tips
-Add "&p=52" to the end of TimeEdit to get the 52 week view.
+Add "&p=52" to the end of TimeEdit to get the 52 week view. (before exporting to ics)
 
 Add https://github.com/EdvinNilsson/chalmersCalendar as a separate calendar
 
