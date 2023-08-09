@@ -99,7 +99,8 @@ const filterEvents = (events, user) => {
   // Plaintext Replacement
   let plaintext = JSON.stringify(events);
 
-  // plaintext = plaintext.replaceAll('Kurskod\\\\, Kursnamn: ', '');
+  plaintext = plaintext.replaceAll('Kurskod\\\\, Kursnamn: ', '');
+  plaintext = plaintext.replaceAll('Course name: ', '');
   // plaintext = plaintext.replaceAll('Rum\\\\, Hus: ', '');
   // plaintext = plaintext.replaceAll('\\\\, Tentamen', '');
 
