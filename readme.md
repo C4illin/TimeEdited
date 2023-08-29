@@ -1,10 +1,12 @@
 # TimeEditFilter
 https://timeedited.emrik.org/
 
+Removes "Course name:" from timeedit ics url. Also allows you to hide courses and exams.
+
 ## Tips
 Add "&p=52" to the end of TimeEdit to get the 52 week view. (before exporting to ics)
 
-Add https://github.com/EdvinNilsson/chalmersCalendar as a separate calendar
+Add https://github.com/EdvinNilsson/chalmersCalendar as a separate calendar for better exam events.
 
 ## Self host
 ```yml
