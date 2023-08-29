@@ -1,7 +1,7 @@
 # TimeEditFilter
 https://timeedited.emrik.org/
 
-Removes "Course name:" from timeedit ics url. Also allows you to hide courses and exams.
+Removes "Course name:" from TimeEdit ics url. Also allows you to hide courses and exams.
 
 ## Tips
 Add "&p=52" to the end of TimeEdit to get the 52 week view. (before exporting to ics)
