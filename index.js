@@ -112,7 +112,7 @@ const filterEvents = (events, user) => {
   }
   
   for (let i = 0, l = removeCourses.length; i < l; i++){
-    filteredEvents = filteredEvents.filter((event) => !event.SUMMARY.includes(removeCourses[i]));
+    filteredEvents = filteredEvents.filter((event) => !event.LOCATION.includes(removeCourses[i]));
   }
 
   // filteredEvents = filteredEvents.map((event) => {
