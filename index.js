@@ -128,16 +128,20 @@ const filterEvents = (events, user) => {
 
 	plaintext = plaintext.replaceAll("Kurskod\\\\, Kursnamn: ", "");
 	plaintext = plaintext.replaceAll("Course name: ", "");
-	plaintext = plaintext.replaceAll(
-		'";CUTYPE=INDIVIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail',
-		"",
-	);
-	plaintext = plaintext.replaceAll(
-		"VIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail",
-		"",
-	);
 
 	let filteredEvents = JSON.parse(plaintext);
+
+  filteredEvents = filteredEvents.map((event) => {
+    event.DESCRIPTION = event.DESCRIPTION.replaceAll(
+      '";CUTYPE=INDIVIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail',
+      "",
+    );
+    event.DESCRIPTION = event.DESCRIPTION.replaceAll(
+      "VIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail",
+      "",
+    );
+    return event;
+  });
 
 	// JSON Filtering
 	if (user?.option1) {
@@ -156,9 +160,8 @@ const filterEvents = (events, user) => {
 	if (user?.option2) {
 		// copy location to title and title to location
 		filteredEvents = filteredEvents.map((event) => {
-      const temp = event.SUMMARY;
 			event.SUMMARY = event.LOCATION;
-			event.LOCATION = temp;
+			event.LOCATION = event.SUMMARY;
 			return event;
 		});
 	}
@@ -196,3 +199,5 @@ const fetchyFilter = async (user) => {
 		return "Failed to fetch calendar";
 	}
 };
+
+// fetchyFilter(config.emrik);
