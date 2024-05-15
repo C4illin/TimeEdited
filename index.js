@@ -160,8 +160,9 @@ const filterEvents = (events, user) => {
 	if (user?.option2) {
 		// copy location to title and title to location
 		filteredEvents = filteredEvents.map((event) => {
+      const temp = event.SUMMARY;
 			event.SUMMARY = event.LOCATION;
-			event.LOCATION = event.SUMMARY;
+			event.LOCATION = temp;
 			return event;
 		});
 	}
@@ -193,6 +194,7 @@ const fetchyFilter = async (user) => {
 		const filteredEvents = await filterEvents(events, user);
 		output.VCALENDAR[0].VEVENT = filteredEvents;
 		const result = ical2json.revert(output);
+    console.log(result);
 		return result;
 	} catch (error) {
 		console.error(error);
@@ -200,4 +202,4 @@ const fetchyFilter = async (user) => {
 	}
 };
 
-// fetchyFilter(config.emrik);
+fetchyFilter(config.emrik);
