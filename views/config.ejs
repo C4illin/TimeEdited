@@ -14,20 +14,17 @@
 </head>
 
 <body>
-  <h1>Config <%-user%>
-  </h1>
+  <h1>Config <%-user%></h1>
   <!-- <p><%-url %></p> -->
   <form method="post" action="/config/<%-user%>/save" class="flexFix">
     <p>Filter (ex: "TME055, MVE550"):</p>
     <textarea name="removeCourses" placeholder="TME055, MVE550 etc."><%-removeCourses-%></textarea>
     <div>
-      <input type="checkbox" id="option1" name="option1" value="option1" checked=<%-option1-%>>
+      <input type="checkbox" id="option1" name="option1" value="option1" <%- option1 ? 'checked' : '' %> >
       <label for="option1">Ta bort tentamen, självstudier och liknande</label><br>
-      <!-- <input type="checkbox" id="option2" name="option2" value="option2" checked>
-      <label for="option2">Ta bort "Kurskod, Kursnamn" & "Rum, Hus" & ", Tentamen"</label><br> -->
+      <input type="checkbox" id="option2" name="option2" value="option2" <%- option2 ? 'checked' : '' %> >
+      <label for="option2">Flytta titel till platsfältet och platsfältet till titel</label><br>
     </div>
-    <!-- <input type="checkbox" id="option3" name="option3" value="option3">
-    <label for="option3"> I have a boat</label><br><br> -->
     <input type="submit" value="Spara" />
   </form>
   <p>Kopiera till ditt kalender program:</p>

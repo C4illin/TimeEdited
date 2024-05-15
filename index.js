@@ -53,6 +53,12 @@ app.post("/config/:user/save", (req, res) => {
 		config[user].option1 = false;
 	}
 
+	if (req.body.option2 && req.body.option2 === "option2") {
+		config[user].option2 = true;
+	} else {
+		config[user].option2 = false;
+	}
+
 	if (req.body.removeCourses && typeof req.body.removeCourses === "string") {
 		config[user].removeCourses = req.body.removeCourses
 			.replaceAll(" ", "")
@@ -80,11 +86,17 @@ app.get("/config/:user", (req, res) => {
 		option1 = config[user].option1;
 	}
 
+	let option2 = false; // Default to false
+	if (config[user].option2) {
+		option2 = config[user].option2;
+	}
+
 	res.render("config", {
 		url: url,
 		user: user,
 		removeCourses: removeCourses,
 		option1: option1,
+		option2: option2,
 	});
 });
 
@@ -124,8 +136,6 @@ const filterEvents = (events, user) => {
 		"VIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail",
 		"",
 	);
-	// plaintext = plaintext.replaceAll('Rum\\\\, Hus: ', '');
-	// plaintext = plaintext.replaceAll('\\\\, Tentamen', '');
 
 	let filteredEvents = JSON.parse(plaintext);
 
@@ -143,23 +153,20 @@ const filterEvents = (events, user) => {
 		);
 	}
 
+	if (user?.option2) {
+		// copy location to title and title to location
+		filteredEvents = filteredEvents.map((event) => {
+			event.SUMMARY = event.LOCATION;
+			event.LOCATION = event.SUMMARY;
+			return event;
+		});
+	}
+
 	for (let i = 0, l = removeCourses.length; i < l; i++) {
 		filteredEvents = filteredEvents.filter(
 			(event) => !event.LOCATION.includes(removeCourses[i]),
 		);
 	}
-
-	// filteredEvents = filteredEvents.map((event) => {
-	//   if (event.SUMMARY == 'Tentamen') {
-	//     if (event.DESCRIPTION.includes('Information inför val av kandidatarbete')) {
-	//       event.SUMMARY = 'Information inför val av kandidatarbete';
-	//     }
-	//     if (event.DESCRIPTION.includes('Halv dag/ Half day')) {
-	//       event.SUMMARY = 'Halv dag';
-	//     }
-	//   }
-	//   return event;
-	// });
 
 	return filteredEvents;
 };
@@ -188,5 +195,3 @@ const fetchyFilter = async (user) => {
 		return "Failed to fetch calendar";
 	}
 };
-
-// fetchyFilter(url)
