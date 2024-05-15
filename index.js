@@ -156,8 +156,9 @@ const filterEvents = (events, user) => {
 	if (user?.option2) {
 		// copy location to title and title to location
 		filteredEvents = filteredEvents.map((event) => {
+      const temp = event.SUMMARY;
 			event.SUMMARY = event.LOCATION;
-			event.LOCATION = event.SUMMARY;
+			event.LOCATION = temp;
 			return event;
 		});
 	}
