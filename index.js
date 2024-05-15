@@ -131,17 +131,17 @@ const filterEvents = (events, user) => {
 
 	let filteredEvents = JSON.parse(plaintext);
 
-  filteredEvents = filteredEvents.map((event) => {
-    event.DESCRIPTION = event.DESCRIPTION.replaceAll(
-      '";CUTYPE=INDIVIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail',
-      "",
-    );
-    event.DESCRIPTION = event.DESCRIPTION.replaceAll(
-      "VIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail",
-      "",
-    );
-    return event;
-  });
+	filteredEvents = filteredEvents.map((event) => {
+		event.DESCRIPTION = event.DESCRIPTION.replaceAll(
+			'";CUTYPE=INDIVIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail',
+			"",
+		);
+		event.DESCRIPTION = event.DESCRIPTION.replaceAll(
+			"VIDUAL;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:invalid:nomail",
+			"",
+		);
+		return event;
+	});
 
 	// JSON Filtering
 	if (user?.option1) {
@@ -157,20 +157,20 @@ const filterEvents = (events, user) => {
 		);
 	}
 
-	if (user?.option2) {
-		// copy location to title and title to location
-		filteredEvents = filteredEvents.map((event) => {
-      const temp = event.SUMMARY;
-			event.SUMMARY = event.LOCATION;
-			event.LOCATION = temp;
-			return event;
-		});
-	}
-
 	for (let i = 0, l = removeCourses.length; i < l; i++) {
 		filteredEvents = filteredEvents.filter(
 			(event) => !event.LOCATION.includes(removeCourses[i]),
 		);
+	}
+
+	if (user?.option2) {
+		// copy location to title and title to location
+		filteredEvents = filteredEvents.map((event) => {
+			const temp = event.SUMMARY;
+			event.SUMMARY = event.LOCATION;
+			event.LOCATION = temp;
+			return event;
+		});
 	}
 
 	return filteredEvents;
@@ -194,7 +194,7 @@ const fetchyFilter = async (user) => {
 		const filteredEvents = await filterEvents(events, user);
 		output.VCALENDAR[0].VEVENT = filteredEvents;
 		const result = ical2json.revert(output);
-    console.log(result);
+		console.log(result);
 		return result;
 	} catch (error) {
 		console.error(error);
