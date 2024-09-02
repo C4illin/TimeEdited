@@ -128,6 +128,7 @@ const filterEvents = (events, user) => {
 
 	plaintext = plaintext.replaceAll("Kurskod\\\\, Kursnamn: ", "");
 	plaintext = plaintext.replaceAll("Course name: ", "");
+	plaintext = plaintext.replaceAll("Rubrik: ", "");
 
 	let filteredEvents = JSON.parse(plaintext);
 
@@ -151,6 +152,8 @@ const filterEvents = (events, user) => {
 				!event.SUMMARY.startsWith("Tentaanmälan") &&
 				!event.SUMMARY.startsWith("Tentamen") &&
 				!event.SUMMARY.startsWith("Självstudier") &&
+				!event.SUMMARY.startsWith("Nyårsdagen") &&
+				!event.SUMMARY.startsWith("Nyårsafton") &&
 				!event.SUMMARY.includes("Holiday") &&
 				!event.SUMMARY.includes("Omtentamen") &&
 				!event.SUMMARY.includes("Anmälan omtenta"),
@@ -159,7 +162,7 @@ const filterEvents = (events, user) => {
 
 	for (let i = 0, l = removeCourses.length; i < l; i++) {
 		filteredEvents = filteredEvents.filter(
-			(event) => !event.LOCATION.includes(removeCourses[i]),
+			(event) => !event.SUMMARY.includes(removeCourses[i]),
 		);
 	}
 
@@ -202,4 +205,4 @@ const fetchyFilter = async (user) => {
 	}
 };
 
-fetchyFilter(config.emrik);
+// fetchyFilter(config.emrik);
