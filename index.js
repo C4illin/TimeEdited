@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
 	const url = req.query.timeEditUrl;
 	if (url.startsWith("https://cloud.timeedit.net/") && url.endsWith(".ics")) {
-		const userid = uid();
+		const userid = uid.rnd();
 		config[userid] = {};
 		config[userid].url = url;
 		fs.writeFileSync("./config/config.json", JSON.stringify(config, null, 2));
