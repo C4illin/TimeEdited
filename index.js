@@ -131,6 +131,7 @@ const filterEvents = (events, user) => {
   plaintext = plaintext.replaceAll("Kurskod: ", "");
   plaintext = plaintext.replaceAll("Course name: ", "");
   plaintext = plaintext.replaceAll("Rubrik: ", "");
+  plaintext = plaintext.replaceAll("Aktivitet: ", "");
 
   let filteredEvents = JSON.parse(plaintext);
 
