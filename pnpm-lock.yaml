@@ -19,7 +19,7 @@ importers:
         version: 5.1.0
       got:
         specifier: ^14.4.7
-        version: 14.4.9
+        version: 14.5.0
       ical2json:
         specifier: ^4.1.0
         version: 4.1.0
@@ -92,6 +92,9 @@ packages:
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
+
+  '@keyv/serialize@1.1.1':
+    resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
@@ -199,8 +202,8 @@ packages:
     resolution: {integrity: sha512-+qJyx4xiKra8mZrcwhjMRMUhD5NR1R8esPkzIYxX96JiecFoxAXFuz/GpR3+ev4PE1WamHip78wV0vcmPQtp8w==}
     engines: {node: '>=14.16'}
 
-  cacheable-request@12.0.1:
-    resolution: {integrity: sha512-Yo9wGIQUaAfIbk+qY0X4cDQgCosecfBe3V9NSyeY4qPC2SAkbCS4Xj79VP8WOzitpJUZKc/wsRCYF5ariDIwkg==}
+  cacheable-request@13.0.12:
+    resolution: {integrity: sha512-qqK/etGeI/9DV5yRkO50ApDTjip9UXPml1NHYJksUAw15yMLOf8VUO1/8bu4P8birOCqR+hYQ/nh1Lezc8sZrA==}
     engines: {node: '>=18'}
 
   call-bind-apply-helpers@1.0.2:
@@ -566,8 +569,8 @@ packages:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
     engines: {node: '>= 0.4'}
 
-  got@14.4.9:
-    resolution: {integrity: sha512-Dbu075Jwm3QwNCIoCenqkqY8l2gd7e/TanuhMbzZIEsb1mpAneImSusKhZ+XdqqC3S91SDV/1SdWpGXKAlm8tA==}
+  got@14.5.0:
+    resolution: {integrity: sha512-rZ8+ZMYz9yeTFmFtOiwf/Trcli8gdqgqAz0kmkEOWcT7C3BFG3Z+dLQu0y8je7RogG7Wp1obnu5GerwCaccftw==}
     engines: {node: '>=20'}
 
   has-bigints@1.1.0:
@@ -773,6 +776,9 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
+
+  keyv@5.5.3:
+    resolution: {integrity: sha512-h0Un1ieD+HUrzBH6dJXhod3ifSghk5Hw/2Y4/KHBziPlZecrFyE9YOTPU6eOs0V9pYl8gOs86fkr/KN8lUX39A==}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -984,6 +990,10 @@ packages:
   responselike@3.0.0:
     resolution: {integrity: sha512-40yHxbNcl2+rzXvZuVkrYohathsSJlMTXKryG5y8uciHv1+xDLHQpgjG64JUO9nrEq2jGLH6IZ8BcZyw3wrweg==}
     engines: {node: '>=14.16'}
+
+  responselike@4.0.2:
+    resolution: {integrity: sha512-cGk8IbWEAnaCpdAt1BHzJ3Ahz5ewDJa0KseTsE3qIRMJ3C698W8psM7byCeWVpd/Ha7FUYzuRVzXoKoM6nRUbA==}
+    engines: {node: '>=20'}
 
   router@2.2.0:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
@@ -1243,6 +1253,8 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
+  '@keyv/serialize@1.1.1': {}
+
   '@rtsao/scc@1.1.0': {}
 
   '@sec-ant/readable-stream@0.4.1': {}
@@ -1372,12 +1384,12 @@ snapshots:
 
   cacheable-lookup@7.0.0: {}
 
-  cacheable-request@12.0.1:
+  cacheable-request@13.0.12:
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       get-stream: 9.0.1
       http-cache-semantics: 4.2.0
-      keyv: 4.5.4
+      keyv: 5.5.3
       mimic-response: 4.0.0
       normalize-url: 8.1.0
       responselike: 3.0.0
@@ -1857,18 +1869,19 @@ snapshots:
 
   gopd@1.2.0: {}
 
-  got@14.4.9:
+  got@14.5.0:
     dependencies:
       '@sindresorhus/is': 7.1.0
       '@szmarczak/http-timer': 5.0.1
       cacheable-lookup: 7.0.0
-      cacheable-request: 12.0.1
+      cacheable-request: 13.0.12
       decompress-response: 6.0.0
       form-data-encoder: 4.1.0
       http2-wrapper: 2.2.1
+      keyv: 5.5.3
       lowercase-keys: 3.0.0
       p-cancelable: 4.0.1
-      responselike: 3.0.0
+      responselike: 4.0.2
       type-fest: 4.41.0
 
   has-bigints@1.1.0: {}
@@ -2072,6 +2085,10 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
+  keyv@5.5.3:
+    dependencies:
+      '@keyv/serialize': 1.1.1
+
   levn@0.4.1:
     dependencies:
       prelude-ls: 1.2.1
@@ -2264,6 +2281,10 @@ snapshots:
       supports-preserve-symlinks-flag: 1.0.0
 
   responselike@3.0.0:
+    dependencies:
+      lowercase-keys: 3.0.0
+
+  responselike@4.0.2:
     dependencies:
       lowercase-keys: 3.0.0
 
