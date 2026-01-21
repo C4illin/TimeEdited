@@ -22,7 +22,7 @@ importers:
         version: 14.6.6
       ical2json:
         specifier: ^4.1.0
-        version: 4.1.1
+        version: 4.1.2
       short-unique-id:
         specifier: ^5.3.2
         version: 5.3.2
@@ -598,8 +598,8 @@ packages:
     resolution: {integrity: sha512-V5nVw1PAOgfI3Lmeaj2Exmeg7fenjhRUgz1lPSezy1CuhPYbgQtbQj4jZfEAEMlaL+vupsvhjqCyjzob0yxsmQ==}
     engines: {node: '>=10.19.0'}
 
-  ical2json@4.1.1:
-    resolution: {integrity: sha512-c1wVZcbMhRE2I+aPtwGLqIBijECnJyIQBK0xO1LwZ8YHBVIKgl7J+aCTGmWHiADgAi23yloTdscealDv18SC+A==}
+  ical2json@4.1.2:
+    resolution: {integrity: sha512-8vOic0UeR9tqrOoHcoF/uXJSAjsoJXIMTLYCo4fbnKBM0HL0iN54TO7zmTlcForGCio3ec57jjwKhMhiWcKt6g==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -1885,7 +1885,7 @@ snapshots:
       quick-lru: 5.1.1
       resolve-alpn: 1.2.1
 
-  ical2json@4.1.1:
+  ical2json@4.1.2:
     dependencies:
       commander: 12.1.0
 
